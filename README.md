@@ -15,21 +15,22 @@ Components/Libraries used:
 
 Endpoints:
 
-POST http://localhost:8083/add
+POST http://ec2-15-206-210-171.ap-south-1.compute.amazonaws.com:8083/add
 {
 "parent_id" : 5,
-"name": "kapil",
+"name": "kapil",    
 "color" : "white"
 }
 
-GET http://localhost:8083/getDataById?id=15
+http://ec2-15-206-210-171.ap-south-1.compute.amazonaws.com:8083/getDataById?id=1
 
-GET http://localhost:8083/getAllData
+http://ec2-15-206-210-171.ap-south-1.compute.amazonaws.com:8083/getAllData
 
 
 
 Docker Steps:
+docker build -t kapilankam/centime-resource-management-updated:latest .
 
-docker build -t centime-resource-management .
-
+docker push kapilankam/centime-resource-management-updated:latest
+docker-compose up
     
