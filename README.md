@@ -22,15 +22,17 @@ POST http://ec2-15-206-210-171.ap-south-1.compute.amazonaws.com:8083/add
 "color" : "white"
 }
 
-http://ec2-15-206-210-171.ap-south-1.compute.amazonaws.com:8083/getDataById?id=1
-
-http://ec2-15-206-210-171.ap-south-1.compute.amazonaws.com:8083/getAllData
+GET http://ec2-15-206-210-171.ap-south-1.compute.amazonaws.com:8083/getDataById?id=1
+GET http://ec2-15-206-210-171.ap-south-1.compute.amazonaws.com:8083/getAllData
 
 
 
 Docker Steps:
-docker build -t kapilankam/centime-resource-management-updated:latest .
+1. Created two docker images one for service and another is for database.
+2. Placed the service docker image in docker hub.
+3. Deployed the service in AWS using docker-compose.yml
 
+docker build -t kapilankam/centime-resource-management-updated:latest .
 docker push kapilankam/centime-resource-management-updated:latest
 docker-compose up
     

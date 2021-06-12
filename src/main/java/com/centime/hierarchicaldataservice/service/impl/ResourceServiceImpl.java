@@ -41,6 +41,9 @@ public class ResourceServiceImpl implements ResourceService {
     public Resource getRootResource() {
         Resource topResource = new Resource();
         topResource.setId(0);
+
+        //TODO: Instead of making db call every time, we can have a cache implemntation
+        // and update the cache when new data inserted into the system and retrieve the data from cache.
         resourceMap = resourceDao.getResourceById(topResource.getId());
         buildParentChildData(topResource);
         return topResource;
