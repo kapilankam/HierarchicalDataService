@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -28,26 +29,24 @@ public class ResourceManagementController {
     ResourceService resourceService;
     String response = "";
 
-    @GetMapping("getAllData")
-    public String getData() {
+    @GetMapping(path = "/getAllData", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> getData() throws JsonProcessingException {
         logger.info("Getting information from database");
         Resource resource = resourceService.getRootResource();
-        try {
-            logger.info("Response processing..");
-            response = processResponse(resource, true);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-        return response;
+
+        logger.info("Response processing..");
+        response = processResponse(resource, true);
+        return new ResponseEntity<Object>(response, HttpStatus.OK);
     }
 
-    @GetMapping("getDataById")
-    public String getDataById(@RequestParam("id") @Min(1) int id) throws JsonProcessingException, NoDataPresentException {
+    @GetMapping(path = "getDataById", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> getDataById(@RequestParam("id") @Min(1) int id) throws JsonProcessingException, NoDataPresentException {
         logger.info("Getting information from database");
         Resource resource = resourceService.getResourceByID(id);
+
         logger.info("Response processing..");
         response = processResponse(resource, false);
-        return response;
+        return new ResponseEntity<Object>(response, HttpStatus.OK);
     }
 
     @PostMapping("add")
