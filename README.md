@@ -11,7 +11,7 @@ Components/Libraries used:
 3. Liquibase - for creating schema and default data.
 4. Spring JPA - For getting/saving a resource from/to database.
 5. Custom annotation to log method params.
-
+6. Deployed services using docker compose.
 
 Endpoints:
 
@@ -33,6 +33,8 @@ Docker Steps:
 3. Deployed the service in AWS using docker-compose.yml
 
 docker build -t kapilankam/centime-resource-management-updated:latest .
+
 docker push kapilankam/centime-resource-management-updated:latest
+
 docker-compose up
     
